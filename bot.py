@@ -25,6 +25,7 @@ async def on_message(message):
                     await client.send_message(message.channel, character) #Do not delete
                     await client.send_message(message.channel, moveName)
 
+
 @client.event
 async def on_ready():
     print('Logged in as')
