@@ -20,7 +20,7 @@ async def on_message(message):
             for namelist in characters:
                 lowerName = msgList[CHARA].lower()
                 if lowerName in namelist:
-                    character = msgList[CHARA]
+                    character = namelist[0]     #First name in namelist is the regular name
                     moveName = " ".join(msgList[MOVE:])
                     await client.send_message(message.channel, character) #Do not delete
                     await client.send_message(message.channel, moveName)
