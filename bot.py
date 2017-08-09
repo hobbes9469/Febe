@@ -18,11 +18,12 @@ async def on_message(message):
         msgList = message.content.split()
         if (len(msgList) >= 2): # If the message is at least 2 words long
             for namelist in characters:
-                if msgList[CHARA] in namelist:
+                lowerName = msgList[CHARA].lower()
+                if lowerName in namelist:
                     character = msgList[CHARA]
+                    moveName = " ".join(msgList[MOVE:])
                     await client.send_message(message.channel, character) #Do not delete
-        #for msg in msgList:
-            #await client.send_message(message.channel, msg)
+                    await client.send_message(message.channel, moveName)
 
 @client.event
 async def on_ready():
