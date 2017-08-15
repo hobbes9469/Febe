@@ -1,5 +1,7 @@
 import discord
 from charnames import characters
+from charmoves import charFrames, charNames
+from token import botToken
 
 CHARA = 1
 MOVE = 2
@@ -21,10 +23,18 @@ async def on_message(message):
                 lowerName = msgList[CHARA].lower()
                 if lowerName in namelist:
                     character = namelist[0]     #First name in namelist is the regular name
-                    moveName = " ".join(msgList[MOVE:])
+                    moveName = " ".join(msgList[MOVE:])  #The rest of the string is the move name
                     await client.send_message(message.channel, character) #Do not delete
                     await client.send_message(message.channel, moveName)
+                    fdText = get_frame_data(character, moveName)
+                    await client.send_message(message.channel, fdText)
 
+def get_frame_data(character, moveName):
+    if character in charNames:
+        if moveName in charFrames[character]:
+            frameData = charFrames[character][moveName.lower()]
+            print(frameData)
+            return frameData
 
 @client.event
 async def on_ready():
@@ -34,4 +44,4 @@ async def on_ready():
     print('------')
 
 if __name__ == "__main__":
-    client.run('MzM0NzkzODgwOTgzODMwNTQ5.DEgYnQ.tnwoVLhlu3QaHpPyqNMbzJoMJQg')
+    client.run(botToken)
