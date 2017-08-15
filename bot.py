@@ -1,7 +1,6 @@
 import discord
 from charnames import characters
 from charmoves import charFrames, charNames
-from token import botToken
 
 CHARA = 1
 MOVE = 2
@@ -44,4 +43,6 @@ async def on_ready():
     print('------')
 
 if __name__ == "__main__":
+    tokenFile = open("bt.txt")
+    botToken = tokenFile.read()
     client.run(botToken)
